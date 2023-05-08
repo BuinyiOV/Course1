@@ -63,13 +63,40 @@ const personalMovieDB2 = {
 	privat: false
 };
 
+/*
 const a = prompt('Один из последних просмотренных фильмов?', ''),
 	b = +prompt('На сколько оцените его?', ''),
 	c = prompt('Один из последних просмотренных фильмов?', ''),
 	d = +prompt('На сколько оцените его?', '');
+	*/
 
+	for (let i = 1; i < 3; i++) {
+		const a = prompt('Один из последних просмотренных фильмов?', ''),
+				b = +prompt('На сколько оцените его?', '');
+
+				if (a !='' && b !='' && a != null && b != null && a.length < 50) {
+					personalMovieDB2.movies[a] = b; //якщо personalMovieDB2.movies.a = b; - не працюватиме кирилиця і пробіл та деякі браузери
+				} else {
+					console.log('Error');
+					i--;
+				};
+
+	};
+
+	if (personalMovieDB2.count < 10) {
+		console.log("Просмотрено довольно мало фильмов");
+	} else if (personalMovieDB2.count >= 10 && personalMovieDB2.count < 30) {
+		console.log("Вы классический зритель");
+	} else if (personalMovieDB2.count >=30) {
+		console.log("Вы киноман");
+	} else {
+		console.log("Произошла ошибка");
+	}
+
+/*
 	personalMovieDB2.movies[a] = b; //якщо personalMovieDB2.movies.a = b; - не працюватиме кирилиця і пробіл та деякі браузери
 	personalMovieDB2.movies[c] = d;
+	*/
 
 	console.log(personalMovieDB2);
 	

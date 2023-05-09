@@ -53,10 +53,20 @@ console.log(personalMovieDB );
 
 //ВАРІАНТ 2 ЗА ЗРАЗКОМ
 
-const numberOfFilms2 = +prompt('Сколько фильмов вы уже посмотрели?', '');
+let numberOfFilms;
 
-const personalMovieDB2 = {
-	count: numberOfFilms2,
+function start() {
+	numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+	while(numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+		numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+	}
+}
+
+start();
+
+const personalMovieDB = {
+	count: numberOfFilms,
 	movies: {},
 	actors: {},
 	genres: [],
@@ -70,33 +80,60 @@ const a = prompt('Один из последних просмотренных ф
 	d = +prompt('На сколько оцените его?', '');
 	*/
 
-	for (let i = 1; i < 3; i++) {
-		const a = prompt('Один из последних просмотренных фильмов?', ''),
-				b = +prompt('На сколько оцените его?', '');
+	
 
-				if (a !='' && b !='' && a != null && b != null && a.length < 50) {
-					personalMovieDB2.movies[a] = b; //якщо personalMovieDB2.movies.a = b; - не працюватиме кирилиця і пробіл та деякі браузери
-				} else {
-					console.log('Error');
-					i--;
-				};
-
+	function rememberMyFilms(){
+		for (let i = 1; i < 3; i++) {
+			const a = prompt('Один из последних просмотренных фильмов?', ''),
+					b = +prompt('На сколько оцените его?', '');
+	
+					if (a !='' && b !='' && a != null && b != null && a.length < 50) {
+						personalMovieDB.movies[a] = b; //якщо personalMovieDB.movies.a = b; - не працюватиме кирилиця і пробіл та деякі браузери
+					} else {
+						console.log('Error');
+						i--;
+					};
+		};
 	};
 
-	if (personalMovieDB2.count < 10) {
-		console.log("Просмотрено довольно мало фильмов");
-	} else if (personalMovieDB2.count >= 10 && personalMovieDB2.count < 30) {
-		console.log("Вы классический зритель");
-	} else if (personalMovieDB2.count >=30) {
-		console.log("Вы киноман");
-	} else {
-		console.log("Произошла ошибка");
-	}
+	//rememberMyFilms()
+
+	
+
+	function detectPersonalLevel(){
+		if (personalMovieDB.count < 10) {
+			console.log("Просмотрено довольно мало фильмов");
+		} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+			console.log("Вы классический зритель");
+		} else if (personalMovieDB.count >=30) {
+			console.log("Вы киноман");
+		} else {
+			console.log("Произошла ошибка");
+		};
+	};
+
+	//detectPersonalLevel();
+
+	function showMyBD (hidden){
+		if (!hidden){
+			console.log(personalMovieDB);
+			
+		}
+	};
+
+	//showMyBD (personalMovieDB.privat);
+
+	function writeYourGenres () {
+		for (let i = 1; i <= 3; i++){
+			personalMovieDB.genres[i - 1] = prompt(`Ваш любимый фильм под номером ${i}`);
+		}
+	};
+
+	writeYourGenres ();
+
+console.log(personalMovieDB);
 
 /*
-	personalMovieDB2.movies[a] = b; //якщо personalMovieDB2.movies.a = b; - не працюватиме кирилиця і пробіл та деякі браузери
-	personalMovieDB2.movies[c] = d;
-	*/
-
-	console.log(personalMovieDB2);
-	
+	personalMovieDB.movies[a] = b; //якщо personalMovieDB.movies.a = b; - не працюватиме кирилиця і пробіл та деякі браузери
+	personalMovieDB.movies[c] = d;
+	*/	
